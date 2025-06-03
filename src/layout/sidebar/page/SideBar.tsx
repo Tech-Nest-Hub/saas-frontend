@@ -1,16 +1,21 @@
 import SidebarLink from "../components/SidebarLink";
 import type { SidebarProps } from "../types/SidebarTypes"
-import { Archive, CircleDollarSign, Clipboard, Layout, Settings2, Users, Menu } from "lucide-react";
+import { Archive, CircleDollarSign, Clipboard, Layout, Settings2, Users, Menu, ListTodo } from "lucide-react";
 
 
 
-const SideBar = ({ isCollapsed, currentPath, onNavigate }: SidebarProps) => {
-
+const SideBar = () => {
+  const { isCollapsed, currentPath, onNavigate }: SidebarProps = {
+    isCollapsed: false,
+    currentPath: '',
+    onNavigate: () => { }
+  }
   const sidebarClass = `fixed flex flex-col ${isCollapsed ? 'w-0 md:w-16' : 'w-72 md:w-64'
     } bg-gray-50 transition-all duration-300 overflow-hidden h-full shadow-md z-40`
 
   const menuItems = [
     { href: '/dashboard', icon: Layout, label: 'Dashboard' },
+    { href: '/todo', icon: ListTodo, label: 'Todo' },
     { href: '/inventory', icon: Archive, label: 'Inventory' },
     { href: '/products', icon: Clipboard, label: 'Products' },
     { href: '/users', icon: Users, label: 'Users' },

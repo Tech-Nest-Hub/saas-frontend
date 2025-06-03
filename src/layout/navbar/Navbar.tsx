@@ -7,7 +7,8 @@ const Navbar = (props: Props) => {
   
 
   function handleToggleSidebar() {
-    const toggleSidebar = false
+    const toggleSidebar = true
+    return toggleSidebar
   }
 
   return (
