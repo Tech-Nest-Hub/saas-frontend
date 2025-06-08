@@ -5,9 +5,6 @@ import TodoPage from './features/todo/pages/TodoPage';
 
 
 
-
-
-
 function App() {
   return (
     <>

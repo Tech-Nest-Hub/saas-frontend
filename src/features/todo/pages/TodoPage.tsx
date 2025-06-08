@@ -1,10 +1,34 @@
-import React from 'react'
+import { useEffect, useState } from "react";
 
-type Props = {}
+interface TodoData {
+  name: string;
+  createdAt: Date;
+  strings: string;
+  id: number
+}
 
-const TodoPage = (props: Props) => {
+const TodoPage = () => {
+  const [todo, setTodo] = useState<TodoData | null>(null);
+
+  useEffect(() => {
+    async function GetTodo() {
+      const response = await fetch("https://6845a909fc51878754dbe898.mockapi.io/todo/get");
+      const data: TodoData = await response.json();
+      setTodo(data);
+    }
+
+    GetTodo();
+  }, [])
+
   return (
-    <div>TodoPage</div>
+    <>
+      {todo && (
+        <div>
+          <h1>{todo.name}</h1>
+          <p>{todo.strings}</p>
+        </div>
+      )}
+    </>
   )
 }
 
