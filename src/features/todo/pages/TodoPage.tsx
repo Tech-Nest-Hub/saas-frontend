@@ -8,13 +8,18 @@ interface TodoData {
 }
 
 const TodoPage = () => {
-  const [todo, setTodo] = useState<TodoData | null>(null);
+    const [todo, setTodo] = useState<TodoData[]>([]);
 
   useEffect(() => {
     async function GetTodo() {
-      const response = await fetch("https://6845a909fc51878754dbe898.mockapi.io/todo/get");
-      const data: TodoData = await response.json();
-      setTodo(data);
+      try {
+
+        const response = await fetch("https://6845a909fc51878754dbe898.mockapi.io/todo/get");
+        const data: TodoData[] = await response.json();
+        setTodo(data);
+      } catch (error) {
+
+      }
     }
 
     GetTodo();
@@ -22,12 +27,11 @@ const TodoPage = () => {
 
   return (
     <>
-      {todo && (
-        <div>
-          <h1>{todo.name}</h1>
-          <p>{todo.strings}</p>
-        </div>
-      )}
+     {todo.map((index)=> {
+       return (
+         <div key={index.id}>{index.name}</div>
+       )
+     })}
     </>
   )
 }
