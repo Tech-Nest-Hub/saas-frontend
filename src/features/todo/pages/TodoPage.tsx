@@ -2,12 +2,19 @@ import { useEffect, useState } from "react";
 import { Table, TableBody, TableCaption, } from "../../../components/ui/table";
 import type { TodoData } from "../types/types";
 import { Loader2 } from "lucide-react";
+import { Checkbox } from "../../../components/ui/checkbox";
+import { Label } from "../../../components/ui/label";
 
 
 
 const TodoPage = () => {
   const [todo, setTodo] = useState<TodoData[]>([]);
   const loading = false;
+  const isListOrNot = true;
+  function handleListOrNot () {
+    const data = 'abc';
+    return data
+  }
 
   useEffect(() => {
     async function GetTodo() {
@@ -28,14 +35,21 @@ const TodoPage = () => {
       {loading ? (
         <Loader2 />
       ) : (
-        <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          {todo.map((todos) => (
-            <TableBody key={todos.id} className="">
-              {todos.task}
-            </TableBody>
-          ))}
-        </Table>
+        <>
+          <div className="flex gap-8 text-3xl font-bold">
+            {
+              isListOrNot ? (
+                <>
+                <h1>Todo List</h1>
+                <Checkbox onClick={handleListOrNot} id="terms-2" defaultChecked />
+                <Label>List</Label>
+                </>
+              ) : (
+                <h1>Completed List</h1>
+              )
+            }
+          </div>
+        </>
       )}
 
     </>
